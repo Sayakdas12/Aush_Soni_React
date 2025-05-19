@@ -1,42 +1,50 @@
-
 import React, { useState } from "react";
 
-import { CDN_url, LOGO_URL } from '../utils/constants';
-
-
-
+import { CDN_url, LOGO_URL } from "../utils/constants";
+import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
-
-  const [menuOpen, setMenuOpen] = useState(false);
-
-  const toggleMobileMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
+  const [btnNameReact, setbtnNameReact] = useState("Login");
 
   return (
     <header className="header">
       <div className="container">
+        {/* <!-- Logo Section (Left) --> */}
         <div className="logo-section">
-          <img src={LOGO_URL} alt="logo" className="logo"/>
+          <img src={LOGO_URL} alt="Logo" className="logo" />
           <h1 className="site-title">Sweet 🍒</h1>
         </div>
+
+        {/* <!-- Center Navigation --> */}
         <nav className="navbar">
-          <a href="#home">Home</a>
-          <a href="#services">Services</a>
-          <a href="#destinations">Destinations</a>
-          <a href="#contact">Contact</a>
+          < Link to="/" >Home</Link>
+          < Link to="About">About</Link>
+          < Link to="Services">Services</Link>
+          < Link to="Contact">Contact</Link>
         </nav>
-        <div className="menu-icon" onClick={toggleMobileMenu}>
-          &#9776;
+
+        {/* <!-- Login/Logout --> */}
+        <div className="nav-actions">
+          <button
+            className="but"
+            onClick={() => {
+              btnNameReact === "Login"
+                ? setbtnNameReact("Logout")
+                : setbtnNameReact("Login");
+            }}
+          >
+            {btnNameReact}
+          </button>
         </div>
       </div>
-      <div className={`mobile-menu ${menuOpen ? "open" : ""}`}>
-        <a href="#home">Home</a>
-        <a href="#services">Services</a>
-        <a href="#destinations">Destinations</a>
-        <a href="#contact">Contact</a>
+
+      {/* <!-- Mobile Menu --> */}
+      <div className="mobile-menu">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Contact</a>
       </div>
     </header>
   );
