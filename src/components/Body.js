@@ -15,16 +15,16 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=30.8585246&lng=75.8705258&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
+      "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=31.2516688&lng=75.6959808&carousel=true&third_party_vendor=1"
     );
 
     const json = await data.json();
     console.log(json);
     setListofResturents(
-      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
     );
     setupdate(
-      json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants
+      json.data.cards[4].card.card.gridElements.infoWithStyle.restaurants
     );
   };
 
@@ -51,7 +51,6 @@ const Body = () => {
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
 
-            
               setupdate(filteredRestaurent);
             }}
           >
@@ -63,9 +62,9 @@ const Body = () => {
       <div className="res-contener">
         {update &&
           update
-      .filter((res) =>
+            .filter((res) =>
               res.info.name.toLowerCase().includes(searchText.toLowerCase())
-            )      
+            )
             .map((resturent) => (
               <ResturentCard key={resturent.info.id} resData={resturent} />
             ))}

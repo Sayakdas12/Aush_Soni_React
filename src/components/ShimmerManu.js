@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const ShimmerManu = () => {
   return (
@@ -16,23 +16,21 @@ const ShimmerManu = () => {
             <h4 className="avg-rating shimmer-menu stroke animate">
               <span
                 className="icons shimmer-menu stroke animate"
-                stroke
-                animate
                 style={{
-                  position: 'relative',
-                  top: '2px',
-                  marginRight: '3px',
+                  position: "relative",
+                  top: "2px",
+                  marginRight: "3px",
                 }}
               ></span>
               <span></span>
             </h4>
             <h4 className="time shimmer-menu stroke animate">
               <span
-                className="icons stroke animate"
+                className="icons shimmer-menu stroke animate"
                 style={{
-                  position: 'relative',
-                  top: '2px',
-                  marginRight: '3px',
+                  position: "relative",
+                  top: "2px",
+                  marginRight: "3px",
                 }}
               ></span>
               <span> </span>
@@ -56,10 +54,6 @@ const ShimmerManu = () => {
               <img src="" alt="" className="stroke animate" />
             </div>
           </div>
-
-          {/* <li>{itemCards[0].card.info.name}</li>
-        <li>{itemCards[1].card.info.name}</li>
-        <li>{itemCards[2].card.info.name}</li> */}
         </div>
       </div>
     </div>

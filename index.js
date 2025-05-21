@@ -4,7 +4,7 @@ import AppLayout from "./src/App";
 import About from "./src/components/About"; 
 import Contact from "./src/components/Contact";
 import Body from "./src/components/Body";
-import Error from "./src/components/Error"; // ✅ Import the Error component
+import Error from "./src/components/Error"; 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Services from "./src/components/Services";
 import RestaurantMenu from "./src/components/RestaurantMenu";
@@ -13,8 +13,8 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-    errorElement: <Error />, // ✅ Corrected usage
-    children: [ // ✅ Fix typo: should be `children` not `Children`
+    errorElement: <Error />, 
+    children: [ 
       {
         path: "/",
         element: <Body />

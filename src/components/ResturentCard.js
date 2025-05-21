@@ -9,14 +9,14 @@ const ResturentCard = (props) => {
     locality,
     avgRating,
     cuisines = []
-  } = resData.info || {}; // 👈 Fix here: accessing `info`
+  } = resData.info || {}; 
 
   const fullStars = Math.floor(avgRating || 0); // Fallback for undefined rating
 
   return (
     <div className="res-card">
       <img
-        className="res-logo"
+        className="res-logo" 
         alt="restaurant logo"
         src={CDN_url + cloudinaryImageId}
       />
