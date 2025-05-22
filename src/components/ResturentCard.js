@@ -1,22 +1,22 @@
-import { CDN_url } from '../utils/constants';
+import { Link } from "react-router-dom";
+import { CDN_url } from "../utils/constants";
 
 const ResturentCard = (props) => {
   const { resData = {} } = props;
-  const { 
+  const {
     cloudinaryImageId,
     name,
     costForTwo,
     locality,
     avgRating,
-    cuisines = []
-  } = resData.info || {}; 
+    cuisines = [],
+  } = resData.info || {};
 
-  const fullStars = Math.floor(avgRating || 0); // Fallback for undefined rating
-
+  const fullStars = Math.floor(avgRating || 0);
   return (
-    <div className="res-card">
+    <Link className="res-card" to={`/restaurants/${item.card.info.id}`}>
       <img
-        className="res-logo" 
+        className="res-logo"
         alt="restaurant logo"
         src={CDN_url + cloudinaryImageId}
       />
@@ -24,12 +24,12 @@ const ResturentCard = (props) => {
         <h3>{name}</h3>
         <p>{locality}</p>
         <p>{costForTwo}</p>
-        <p>{cuisines.join(', ')}</p>
+        <p>{cuisines.join(", ")}</p>
         <p>
           {avgRating} {"⭐".repeat(fullStars)}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

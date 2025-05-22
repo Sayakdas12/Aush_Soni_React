@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import ShimmerManu from "./ShimmerManu";
 import { CDN_url, MENU_API } from "../utils/constants";
 import { FiClock } from "react-icons/fi";
@@ -11,6 +11,7 @@ const fallbackImageURL =
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
   const { resId } = useParams();
+  const navigate = useNavigate(); // ✅ useNavigate at the top
 
   useEffect(() => {
     fetchMenu();
@@ -24,12 +25,11 @@ const RestaurantMenu = () => {
 
   if (resInfo === null) return <ShimmerManu />;
 
-  // Destructure restaurant info
   const {
     name,
     cuisines,
     costForTwoMessage,
-    imageId,
+    cloudinaryImageId,
     avgRating,
     deliveryTime,
   } = resInfo?.cards[2]?.card?.card?.info || {};
@@ -43,7 +43,9 @@ const RestaurantMenu = () => {
       <header className="menu-header">
         <div className="menu-header-left">
           <img
-            src={imageId ? CDN_url + imageId : fallbackImageURL}
+            src={
+              cloudinaryImageId ? CDN_url + cloudinaryImageId : fallbackImageURL
+            }
             alt="Restaurant"
           />
         </div>
@@ -75,7 +77,14 @@ const RestaurantMenu = () => {
         <h3 className="items">{itemCards.length} items</h3>
         <div className="menu-main-card-container">
           {itemCards.map((item) => (
-            <div key={item.card.info.id} className="menu-card">
+            <div
+              key={item.card.info.id}
+              className="menu-card"
+              onClick={() => {
+                navigate(`/restaurants/:resId`);
+                alert("Item clicked");
+              }}
+            >
               <div className="menu-card-left">
                 <h2 className="menu-name">{item.card.info.name}</h2>
                 <h3 className="menu-price">
