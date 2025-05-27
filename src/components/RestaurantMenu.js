@@ -4,25 +4,19 @@ import ShimmerManu from "./ShimmerManu";
 import { CDN_url, MENU_API } from "../utils/constants";
 import { FiClock } from "react-icons/fi";
 import { AiOutlineStar } from "react-icons/ai";
+import  useRestaurantMenu  from "../utils/useRestaurantMenu";
 
 const fallbackImageURL =
   "https://via.placeholder.com/200x150?text=Image+Not+Found";
 
 const RestaurantMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
+ 
   const { resId } = useParams();
-  const navigate = useNavigate(); // ✅ useNavigate at the top
+  const navigate = useNavigate(); 
 
-  useEffect(() => {
-    fetchMenu();
-  }, []);
+  const resInfo = useRestaurantMenu(resId);
 
-  const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resId);
-    const json = await data.json();
-    setResInfo(json.data);
-  };
-
+  
   if (resInfo === null) return <ShimmerManu />;
 
   const {
@@ -35,7 +29,7 @@ const RestaurantMenu = () => {
   } = resInfo?.cards[2]?.card?.card?.info || {};
 
   const itemCards =
-    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
+    resInfo?.cards[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2 ]?.card?.card
       ?.itemCards || [];
 
   return (
