@@ -18,10 +18,16 @@
     "parcel": "^2.15.0"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "@tailwindcss/postcss": "^4.1.10",
+    "framer-motion": "^12.17.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^6.30.1"
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^6.30.1",
+    "react-toastify": "^11.0.5",
+    "tailwindcss": "^4.1.10"
   },
   "bugs": {
     "url": "https://github.com/Sayakdas12/AushSoli_React/issues"

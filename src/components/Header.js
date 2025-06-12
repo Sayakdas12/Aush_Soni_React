@@ -1,52 +1,57 @@
-import React, { useState } from "react";
-
-import { CDN_url, LOGO_URL } from "../utils/constants";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { LOGO_URL } from "../utils/constants";
+import { useAuth } from "../utils/AuthContext";
+import UserProfile from "./UserProfile";
 
 const Header = () => {
-  const [btnNameReact, setbtnNameReact] = useState("Login");
+  const { isAuthenticated } = useAuth();
 
   return (
-    <header className="header">
-      <div className="container">
-        {/* <!-- Logo Section (Left) --> */}
-        <div className="logo-section">
-          <img src={LOGO_URL} alt="Logo" className="logo" />
-          <h1 className="site-title">Sweet 🍒</h1>
+    <header className="bg-white shadow-md sticky top-0 z-50">
+      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="flex items-center space-x-3">
+          <img src={LOGO_URL} alt="Logo" className="h-10 w-10 object-contain" />
+          <h1 className="text-2xl font-bold text-orange-500">Sweet 🍒</h1>
         </div>
 
-        {/* <!-- Center Navigation --> */}
-        <nav className="navbar">
-          < Link to="/" >Home</Link>
-          < Link to="About">About</Link>
-          < Link to="Services">Services</Link>
-          < Link to="Contact">Contact</Link>
+        <nav className="hidden md:flex gap-6 text-gray-700 font-medium text-base">
+          <Link to="/" className="hover:text-orange-500 transition">
+            Home
+          </Link>
+          <Link to="/about" className="hover:text-orange-500 transition">
+            About
+          </Link>
+          <Link to="/services" className="hover:text-orange-500 transition">
+            Services
+          </Link>
+          <Link to="/grocery" className="hover:text-orange-500 transition">
+            Grocery
+          </Link>
+          <Link to="/contact" className="hover:text-orange-500 transition">
+            Contact
+          </Link>
+          <Link to="/cart" className="hover:text-orange-500 transition">
+            🛒 Cart
+          </Link>
         </nav>
 
-        {/* <!-- Login/Logout --> */}
-        <div className="nav-actions">
-          <button
-            className="but"
-            onClick={() => {
-              btnNameReact === "Login"
-                ? setbtnNameReact("Logout")
-                : setbtnNameReact("Login");
-            }}
-          >
-            {btnNameReact}
-          </button>
+        <div className="flex items-center gap-4">
+          {isAuthenticated() ? (
+            <>
+              <UserProfile />
+            </>
+          ) : (
+            <Link
+              to="/login"
+              className="bg-orange-500 text-white px-4 py-2 rounded-full hover:bg-orange-600 transition font-semibold"
+            >
+              Login
+            </Link>
+          )}
         </div>
-      </div>
-
-      {/* <!-- Mobile Menu --> */}
-      <div className="mobile-menu">
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
       </div>
     </header>
   );
 };
+
 export default Header;

@@ -1,8 +1,8 @@
 import { useRouteError } from "react-router-dom";
 
 const Error = () => {
-  const err = useRouteError();
-  console.error(err);
+  const err = useRouteError() || {};
+  const { status, statusText, message } = err;
 
   const containerStyle = {
     height: "100vh",
@@ -38,7 +38,7 @@ const Error = () => {
       <h1 style={titleStyle}>Oops ❗</h1>
       <h2 style={subtitleStyle}>Something went wrong</h2>
       <h3 style={errorCodeStyle}>
-        {err.status}: {err.statusText || "Unexpected Error"}
+        {status || "Error"}: {statusText || message || "Unexpected Error"}
       </h3>
     </div>
   );
